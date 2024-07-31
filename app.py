@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import matplotlib.pyplot as plt
 
 # Load the model
 model = joblib.load('gradient_boosting_classifier.pkl')
@@ -80,11 +81,9 @@ st.markdown("""
     Higher values close to 1 suggest a higher likelihood of heart disease.
 """)
 
-# Add visualizations (optional)
-import matplotlib.pyplot as plt
-
+# Add visualizations (corrected)
 fig, ax = plt.subplots()
-ax.bar(['Heart Disease', 'No Heart Disease'], prediction_proba[0])
+ax.bar(['Heart Disease', 'No Heart Disease'], [prediction_proba[0][1], prediction_proba[0][0]])
 ax.set_ylabel('Probability')
 ax.set_title('Prediction Probability')
 st.pyplot(fig)
